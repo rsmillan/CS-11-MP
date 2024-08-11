@@ -60,7 +60,7 @@ def input_colors_for_survival(columns,grid):
     x = 0
     try:
         colors_amount = int(colors_amount)
-        if 1 <= colors_amount <= 9 and not isinstance(colors_amount, float):
+        if 1 <= colors_amount <= 9:
             colors_amount = int(colors_amount)
             print(f"The number of colors has been set to {colors_amount}.")
         else:
@@ -172,7 +172,7 @@ def input_colors_for_creative(columns,grid):
     x = 0
     try:
         colors_amount = int(colors_amount)
-        if 1 <= colors_amount <= 9 and not isinstance(colors_amount, float):
+        if 1 <= colors_amount <= 9:
             colors_amount = int(colors_amount)
             x = random.randint(1,int(colors_amount))
         else:
