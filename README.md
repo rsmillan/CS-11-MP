@@ -1,6 +1,7 @@
 # CS 11 MP
  Repository for the MP
 
+**Instructions and Mechanics**
 Welcome to 3-ris!
 To run the game, simply run the source code. No external imports are needed, as all imports used in the game are built-ins.
 It is highly recommended to run the code in a terminal of your choice, as this is a terminal-based game.
