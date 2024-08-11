@@ -363,6 +363,7 @@ def delete_indices(indices_to_delete, grid):
 
 def game_start():
     """Starts the program."""
+    print("Welcome to 3-ris!")
     gamemode = input("What gamemode would you like to play? Enter \"1\" for Creative, \"2\" for Survival, \"3\" to exit.")
     if int(gamemode) == 1:
         print(f"Entering Creative Mode!")
