@@ -43,7 +43,6 @@ def make_grid_for_survival():
     time.sleep(0.5)
     grid = [" "*columns,]*rows
     input_colors_for_survival(columns, grid)
-    #construct grid
 
 def input_colors_for_survival(columns,grid):
     """Asks for the desired amount of colors for the game. This is set to 7 by default. Continues to game proper."""
@@ -62,7 +61,6 @@ def input_colors_for_survival(columns,grid):
         colors_amount = 7
     time.sleep(0.5)
     input_into_grid_for_survival(colors_amount, columns, grid)
-
 
 def input_into_grid_for_survival(colors_amount, columns, grid):
     """This is the game proper. 
@@ -146,7 +144,6 @@ def make_grid_for_creative():
             print("Invalid input. The number of columns has been set to 5.")
     grid = [" "*columns,]*rows
     input_colors_for_creative(columns, grid)
-    #construct grid
 
 def input_colors_for_creative(columns,grid):
     """Asks for the desired amount of colors for the game. This is set to 7 by default. Continues to game proper."""
@@ -219,7 +216,6 @@ def input_into_grid_for_creative(colors_amount, columns, grid):
                 print(f"PLease enter an integer between 1 and {columns//3}.")
                 continue
     sys.exit()
-            #goal here is to get the final column by using transpose
 
 def defying_gravity(block_num, col, g):
     """This function handles the 'drop' part of the game, specifically when a block is inputted successfully."""
@@ -314,7 +310,6 @@ def matchmake(x, grid):
             except:
                 continue
     return indices_to_delete
-    #matchmake conditions, include time.sleep(0.5)
 
 def delete_indices(indices_to_delete, grid):
     """Takes the output of matchmake(x, grid) and deletes, in a similar fashion to a king piece in chess, the blocks involved in the match."""
@@ -326,7 +321,6 @@ def delete_indices(indices_to_delete, grid):
         for (x,y) in indices_to_delete:
             for (x_dir,y_dir) in directions:
                 grid[x+x_dir] = grid[x+x_dir][0:y+y_dir] + " " + grid[x+x_dir][y+y_dir+1:]
-            # grid = _defying_gravity(grid)
         return grid
 
 #####
