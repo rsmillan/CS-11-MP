@@ -5,7 +5,6 @@ import subprocess
 import sys
 import random
 
-
 def clear_screen():
     """Clears the terminal screen, if any"""
     if sys.stdout.isatty():
