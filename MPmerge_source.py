@@ -4,21 +4,28 @@ import subprocess
 import sys
 import random
 
-#####
+
 def clear_screen():
     """Clears the terminal screen, if any"""
     if sys.stdout.isatty():
         clear_cmd = 'cls' if os.name == 'nt' else 'clear'
         subprocess.run([clear_cmd])
 
+
 def survival():
-    """Starts survival mode of the game. Continues to making the grid for survival mode."""
+    """Starts survival mode of the game. 
+    Continues to making the grid for survival mode.
+    """
     print("Welcome to Survival mode!")
     make_grid_for_survival()
     pass
 
+
 def make_grid_for_survival():
-    """Asks for the desired number of rows and columns for the game. This is set to 12 rows and 5 columns respectively. Continues to asking for colors."""
+    """Asks for the desired number of rows and columns for the game. 
+    This is set to 12 rows and 5 columns respectively. 
+    Continues to asking for colors.
+    """
     rows = input("How many rows do you want? Row count:")
     while True:
         try:
@@ -26,7 +33,7 @@ def make_grid_for_survival():
                 rows = int(rows)*3
                 print(f"The number of rows has been set to {rows}.")
                 break
-        except:
+        except Exception:
             rows = 12
             print("Invalid input. The number of rows has been set to 12.")
     time.sleep(0.5)
@@ -37,16 +44,18 @@ def make_grid_for_survival():
                 columns = int(columns)*3
                 print(f"The number of columns has been set to {columns}.")
                 break
-        except:
+        except Exception:
             columns = 5
             print("Invalid input. The number of columns has been set to 5.")
     time.sleep(0.5)
     grid = [" "*columns,]*rows
     input_colors_for_survival(columns, grid)
-    #construct grid
+
 
 def input_colors_for_survival(columns,grid):
-    """Asks for the desired amount of colors for the game. This is set to 7 by default. Continues to game proper."""
+    """Asks for the desired amount of colors for the game. 
+    This is set to 7 by default. Continues to game proper.
+    """
     colors_amount = input("Number of colors:")
     x = 0
     try:
@@ -57,7 +66,7 @@ def input_colors_for_survival(columns,grid):
         else:
             print("Invalid input. The number of colors has been set to 7.")
             colors_amount = 7
-    except:
+    except Exception:
         print("Invalid input. The number of colors has been set to 7.")
         colors_amount = 7
     time.sleep(0.5)
@@ -66,13 +75,14 @@ def input_colors_for_survival(columns,grid):
 
 def input_into_grid_for_survival(colors_amount, columns, grid):
     """This is the game proper. 
-    The game first randomizes the color of the block. The user then inputs the column at which this block is dropped from.
-    When the block is dropped, the matchmake function is called to check if a match is made.
-    If no match is made, the game continues. If there is, the game turns the match into empty space.
+    The game first randomizes the color of the block. 
+    The user then inputs the column at which this block is dropped from.
+    When the block is dropped, matchmake(x, grid) is called to check for matches.
+    If no match is made, the game continues. 
+    If there is, the game turns the match into empty space.
     The game continues afterwards.
     """
     x = random.randint(1, colors_amount)
-    newgrid = []
     print(f"Next block:{x}")
     for row in grid:
         print("│" + row + "│")
@@ -86,7 +96,7 @@ def input_into_grid_for_survival(colors_amount, columns, grid):
             try:
                 col = int(col)
                 if grid[1][((col-1)*3)+1] != " ":
-                    print("The current column is full. Please enter a different integer to drop the block.")
+                    print("The current column is full. Please drop into a different column.")
                     print(f"Next block:{x}")
                 else:
                     if 1 <= col <= columns:
@@ -113,26 +123,32 @@ def input_into_grid_for_survival(colors_amount, columns, grid):
                             break
                     else:
                         print(f"Please enter an integer between 1 and {columns//3}.")
-            except:
+            except Exception:
                 print(f"Please enter an integer between 1 and {columns//3}.")
                 continue
     sys.exit()
 
+
 def creative():
-    """Starts creative mode of the game. Continues to making the grid for creative mode."""
+    """Starts creative mode of the game. 
+    Continues to making the grid for creative mode.
+    """
     print("Welcome to Creative mode!")
     make_grid_for_creative()
     pass
 
+
 def make_grid_for_creative():
-    """Asks for the desired number of rows and columns for the game. This is set to 12 rows and 5 columns respectively. Continues to asking for colors."""
+    """Asks for the desired number of rows and columns for the game. 
+    This is set to 12 rows and 5 columns respectively. 
+    Continues to asking for colors."""
     rows = input("How many rows do you want? Row count:")
     while True:
         try:
             if int(rows) >= 1:
                 rows = int(rows)*3
                 break
-        except:
+        except Exception:
             rows = 12
             print("Invalid input. The number of rows has been set to 12.")
     columns = input("How many columns do you want? Column count:")
@@ -141,15 +157,17 @@ def make_grid_for_creative():
             if int(columns) >= 1:
                 columns = int(columns)*3
                 break
-        except:
+        except Exception:
             columns = 5
             print("Invalid input. The number of columns has been set to 5.")
     grid = [" "*columns,]*rows
     input_colors_for_creative(columns, grid)
-    #construct grid
+
 
 def input_colors_for_creative(columns,grid):
-    """Asks for the desired amount of colors for the game. This is set to 7 by default. Continues to game proper."""
+    """Asks for the desired amount of colors for the game. 
+    This is set to 7 by default. Continues to game proper.
+    """
     colors_amount = input("Number of colors:")
     x = 0
     try:
@@ -161,20 +179,22 @@ def input_colors_for_creative(columns,grid):
             print("Invalid input. The number of colors has been set to 3.")
             colors_amount = 3
             x = random.randint(1,colors_amount)
-    except:
+    except Exception:
         print("Invalid input. The number of colors has been set to 3.")
         colors_amount = 3
     input_into_grid_for_creative(colors_amount, columns, grid)
 
+
 def input_into_grid_for_creative(colors_amount, columns, grid):
     """This is the game proper. 
-    The game first randomizes the color of the block. The user then inputs the column at which this block is dropped from.
-    When the block is dropped, the matchmake function is called to check if a match is made.
-    If no match is made, the game continues. If there is, the game turns the match into empty space.
+    The game first randomizes the color of the block. 
+    The user then inputs the column at which this block is dropped from.
+    When the block is dropped, matchmake(x, grid) is called to check for matches.
+    If no match is made, the game continues. 
+    If there is, the game turns the match into empty space.
     The game continues afterwards.
     """
     x = random.randint(1, colors_amount)
-    newgrid = []
     print(f"Next block:{x}")
     for row in grid:
         print("│" + row + "│")
@@ -188,7 +208,7 @@ def input_into_grid_for_creative(colors_amount, columns, grid):
             try:
                 col = int(col)
                 if grid[1][((col-1)*3)+1] != " ":
-                    print("The current column is full. Please enter a different integer to drop the block.")
+                    print("The current column is full. Please drop into a different column.")
                     print(f"Next block:{x}")
                 else:
                     if 1 <= col <= columns:
@@ -215,14 +235,16 @@ def input_into_grid_for_creative(colors_amount, columns, grid):
                             break
                     else:
                         print(f"please enter an integer between 1 and {columns//3}.")
-            except:
+            except Exception:
                 print(f"PLease enter an integer between 1 and {columns//3}.")
                 continue
     sys.exit()
-            #goal here is to get the final column by using transpose
+
 
 def defying_gravity(block_num, col, g):
-    """This function handles the 'drop' part of the game, specifically when a block is inputted successfully."""
+    """This function handles the 'drop' part of the game, 
+    specifically when a block is inputted successfully.
+    """
     g = list(g)
     x = len(g)
     y = len(g[0])
@@ -251,8 +273,11 @@ def defying_gravity(block_num, col, g):
     
     return fall(g)
 
+
 def _defying_gravity(g):
-    """This function handles the 'drop' part of the game, specifically after a match is made and the blocks involved in the match have been deleted."""
+    """This function handles the 'drop' part of the game, 
+    specifically after a match is made and deleted.
+    """
     g = list(g)
     x = len(g)
     y = len(g[0])
@@ -278,46 +303,53 @@ def _defying_gravity(g):
     
     return fall(g)
 
+
 def matchmake(x, grid):
-    """Collects all instances of the grid where a 3-in-a-row, 3-in-a-column, or 3-in-a-diagonal have the same entries and are the same with the given input."""
+    """Collects all instances of the grid where a 3-in-a-row, 
+    3-in-a-column, or 3-in-a-diagonal have the same entries 
+    and are the same with the given input.
+    """
     indices_to_delete = set()
     rows = range(1, len(grid), 3)
     columns = range(1, len(grid[0]), 3)
     for row in rows:
         for column in columns:
-            try: #3-in-a-row
+            try: #A 3-in-a-row match is made.
                 if grid[row][column] == grid[row][column+3] == grid[row][column+6] == str(x):
                     indices_to_delete.add((row,column))
                     indices_to_delete.add((row,column+3))
                     indices_to_delete.add((row,column+6))
-            except:
+            except Exception:
                 continue
-            try:
+            try: #A 3-in-a-column match is made.
                 if grid[row][column] == grid[row+3][column] == grid[row+6][column] == str(x):
                     indices_to_delete.add((row,column))
                     indices_to_delete.add((row+3,column))
                     indices_to_delete.add((row+6,column))
-            except:
+            except Exception:
                 continue
-            try:
+            try: #A 3-in-a-diagonal match is made, which is of a descending diagonal.
                 if grid[row][column] == grid[row+3][column+3] == grid[row+6][column+6] == str(x):
                     indices_to_delete.add((row,column))
                     indices_to_delete.add((row+3,column+3))
                     indices_to_delete.add((row+6,column+6))
-            except:
+            except Exception:
                 continue
-            try:
+            try: #A 3-in-a-diagonal match is made, which is of an ascending diagonal.
                 if grid[row][column+6] == grid[row+3][column+3] == grid[row+6][column] == str(x):
                     indices_to_delete.add((row,column+6))
                     indices_to_delete.add((row+3,column+3))
                     indices_to_delete.add((row+6,column))
-            except:
+            except Exception:
                 continue
     return indices_to_delete
-    #matchmake conditions, include time.sleep(0.5)
+
 
 def delete_indices(indices_to_delete, grid):
-    """Takes the output of matchmake(x, grid) and deletes, in a similar fashion to a king piece in chess, the blocks involved in the match."""
+    """Takes the output of matchmake(x, grid) and deletes, 
+    in a similar fashion to a king piece in chess, 
+    the blocks involved in the match.
+    """
     directions = [(0,1),(1,0),(0,-1),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1),(0,0)]
     if not indices_to_delete:
         return grid
@@ -326,12 +358,11 @@ def delete_indices(indices_to_delete, grid):
         for (x,y) in indices_to_delete:
             for (x_dir,y_dir) in directions:
                 grid[x+x_dir] = grid[x+x_dir][0:y+y_dir] + " " + grid[x+x_dir][y+y_dir+1:]
-            # grid = _defying_gravity(grid)
         return grid
 
-#####
-#Game Start
+
 def game_start():
+    """Starts the program."""
     gamemode = input("What gamemode would you like to play? Enter \"1\" for Creative, \"2\" for Survival, \"3\" to exit.")
     if int(gamemode) == 1:
         print(f"Entering Creative Mode!")
@@ -349,7 +380,6 @@ def game_start():
         game_start()
 
 game_start()
-
 
 #####
 #unit tests!
