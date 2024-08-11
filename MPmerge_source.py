@@ -1,3 +1,4 @@
+from test_suite import test_defying1, test_defying2, test_matchmake, test_delete
 import time
 import os
 import subprocess
@@ -381,12 +382,3 @@ def game_start():
         game_start()
 
 game_start()
-
-#####
-#unit tests!
-#Test 1: When mode is not creative nor survival.
-#Test 2: When column is NOT an integer: set, frozenset, list, tuple.
-#Test 3: When column is nothing, i.e. "".
-#Test 4:
-
-#####
